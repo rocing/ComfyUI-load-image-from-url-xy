@@ -1,7 +1,7 @@
-from .nodes.load_image_url_node import LoadImageByUrlOrPath
+from .nodes.load_image_url_node import LoadImageByUrlOrPathXY
 
 
 NODE_CLASS_MAPPINGS = {
-    "LoadImageFromUrlOrPath": LoadImageByUrlOrPath,
+    "LoadImageFromUrlOrPathXY": LoadImageByUrlOrPathXY,
 }
 
