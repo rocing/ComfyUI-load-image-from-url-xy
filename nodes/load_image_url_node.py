@@ -78,7 +78,7 @@ def load_image(image_source):
     return img, file_name
 
 
-class LoadImageByUrlOrPath:
+class LoadImageByUrlOrPathXY:
     @classmethod
     def INPUT_TYPES(cls):
         return {
