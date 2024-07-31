@@ -40,14 +40,14 @@ def pil2tensor(img):
         return None, None
 
 
-def load_image(image_source):
+def load_image(image_source, timeout=(5, 10)):
     if image_source.startswith('http'):
         print(image_source)
         max_retries = 3
         file_name = image_source.split('/')[-1]
         for attempt in range(max_retries):
             try:
-                response = requests.get(image_source, stream=True, timeout=(5, 10))
+                response = requests.get(image_source, stream=True, timeout=timeout)
                 response.raise_for_status()
                 original_size = int(response.headers.get('Content-Length', 0))
                 print(original_size)
@@ -78,12 +78,14 @@ def load_image(image_source):
     return img, file_name
 
 
-class LoadImageByUrlOrPath:
+class LoadImageByUrlOrPathXY:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "url_or_path": ("STRING", {"multiline": True, "dynamicPrompts": False})
+                "url_or_path": ("STRING", {"multiline": True, "dynamicPrompts": False}),
+                "connect_timeout": ("INT", {"default": 1}),
+                "read_timeout": ("INT", {"default": 10})
             }
         }
 
@@ -91,9 +93,9 @@ class LoadImageByUrlOrPath:
     FUNCTION = "load"
     CATEGORY = "image"
 
-    def load(self, url_or_path):
+    def load(self, url_or_path, connect_timeout, read_timeout):
         print(url_or_path)
-        img, name = load_image(url_or_path)
+        img, name = load_image(url_or_path, (connect_timeout, read_timeout))
         img_out, mask_out = pil2tensor(img)
         return (img_out, mask_out)
 
