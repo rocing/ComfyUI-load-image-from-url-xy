@@ -47,7 +47,7 @@ def load_image(image_source):
         file_name = image_source.split('/')[-1]
         for attempt in range(max_retries):
             try:
-                response = requests.get(image_source, stream=True)
+                response = requests.get(image_source, stream=True, timeout=(5, 10))
                 response.raise_for_status()
                 original_size = int(response.headers.get('Content-Length', 0))
                 print(original_size)
@@ -78,7 +78,7 @@ def load_image(image_source):
     return img, file_name
 
 
-class LoadImageByUrlOrPathXY:
+class LoadImageByUrlOrPath:
     @classmethod
     def INPUT_TYPES(cls):
         return {
