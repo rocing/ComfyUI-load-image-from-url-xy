@@ -84,7 +84,7 @@ class LoadImageByUrlOrPathXY:
         return {
             "required": {
                 "url_or_path": ("STRING", {"multiline": True, "dynamicPrompts": False}),
-                "connect_timeout": ("INT", {"default": 1}),
+                "connect_timeout": ("INT", {"default": 5}),
                 "read_timeout": ("INT", {"default": 10})
             }
         }
