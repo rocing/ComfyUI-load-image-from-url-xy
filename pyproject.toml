@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-load-image-from-url-xy"
+description = ""
+version = "1.0.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/rocing/ComfyUI-load-image-from-url-xy"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-load-image-from-url-xy"
+Icon = ""
